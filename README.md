@@ -1,24 +1,4 @@
-# antd-demo2
+# antd-vue3
 
-## Project setup
-```
-yarn install
-```
+使用vue3-ts和antd搭建后台模板
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

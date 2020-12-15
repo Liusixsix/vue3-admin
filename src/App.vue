@@ -1,30 +1,29 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <config-provider :locale="zhCN">
+    <router-view v-slot="{ Component }">
+      <component :is="Component" />
+    </router-view>
+  </config-provider>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import Vue, { defineComponent } from "vue";
+import { ConfigProvider } from "ant-design-vue";
+import zhCN from "ant-design-vue/es/locale/zh_CN";
+import { useRoute } from "vue-router";
 
-#nav {
-  padding: 30px;
-}
+export default defineComponent({
+  name: "App",
+  components: { ConfigProvider },
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  setup() {
+    return {
+      zhCN,
+    };
+  },
+});
+</script>
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+<style lang="scss" >
+ @import "~@/styles/common.scss";
 </style>

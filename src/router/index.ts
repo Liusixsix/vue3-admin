@@ -1,25 +1,91 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router'
+import common from '@/router/common'
+import shared from '@/router/modules/shared'
+import error from '@/router/modules/error'
 
-const routes: Array<RouteRecordRaw> = [
+import { App } from 'vue'
+import { createRouterGuards } from './router-guards'
+
+import Layout from '@/layout/index.vue'
+
+export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Layout',
+    redirect:'/dashboard',
+    component:()=> Layout,
+    meta:{
+      title:'系统看板' , icon: 'icon-yibiaopan'
+    },
+    children: [
+      {
+          path: '/dashboard',
+          name: 'dashboard',
+          meta: {
+              title: '首页',
+              icon: 'icon-shouye',
+          },
+          component: () => import(/* webpackChunkName: "dashboard-welcome" */ '@/views/Home.vue')
+      },
+    ]
+   ,
   },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  ...shared,
+  // ...error
+]
+
+export const asyncRoutes:Array<RouteRecordRaw> = [
+    {
+      path:'/demos',
+      name:'demos',
+      component: Layout,           
+      meta: {
+          title: 'demo演示',
+          icon: 'icon-zhuomian',
+      },
+      children:[
+          {
+              path:'custom-a-custom-modal',
+              name:'custom-a-custom-modal',
+              component:()=>import(/* webpackChunkName: "modal" */ '@/demo/modal.vue'), 
+              meta: {
+                  title: '自定义模态框',
+                  icon: 'icon-zhuomian',
+              },
+          },
+          {
+            path:'button',
+            name:'button',
+            component:()=>import(/* webpackChunkName: "modal" */ '@/demo/modal.vue'), 
+            meta: {
+                title: '按钮的扩展',
+                icon: 'icon-zhuomian',
+            },
+        },
+        {
+          path:'icons',
+          name:'icons',
+          component:()=>import(/* webpackChunkName: "modal" */ '@/demo/modal.vue'), 
+          meta: {
+              title: '自定义图标',
+              icon: 'icon-zhuomian',
+          },
+      }
+      ]
+  },
+  
+  
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes
 })
+
+
+export function setupRouter(app:App){
+  app.use(router)
+  createRouterGuards(router)
+}
 
 export default router

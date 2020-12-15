@@ -1,6 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+import router,{setupRouter} from './router'
 import store from './store'
+import {setupAntd} from '@/plugins/index'
+const app = createApp(App).use(store)
 
-createApp(App).use(store).use(router).mount('#app')
+setupAntd(app)
+setupRouter(app)
+
+
+router.isReady().then(_=>app.mount('#app'))
+
