@@ -25,7 +25,7 @@ export const routes: Array<RouteRecordRaw> = [
               title: '首页',
               icon: 'icon-shouye',
           },
-          component: () => import(/* webpackChunkName: "dashboard-welcome" */ '@/views/Home.vue')
+          component: () => import(/* webpackChunkName: "dashboard-welcome" */ '@/views/dashboard/index.vue')
       },
     ]
    ,
@@ -56,18 +56,18 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
           {
             path:'button',
             name:'button',
-            component:()=>import(/* webpackChunkName: "modal" */ '@/demo/modal.vue'), 
+            component:()=>import(/* webpackChunkName: "modal" */ '@/demo/button.vue'), 
             meta: {
                 title: '按钮的扩展',
                 icon: 'icon-zhuomian',
             },
         },
         {
-          path:'icons',
-          name:'icons',
-          component:()=>import(/* webpackChunkName: "modal" */ '@/demo/modal.vue'), 
+          path:'/suspense',
+          name:'suspense',
+          component:()=>import(/* webpackChunkName: "modal" */ '@/demo/suspense/index.vue'), 
           meta: {
-              title: '自定义图标',
+              title: '异步加载组件',
               icon: 'icon-zhuomian',
           },
       }

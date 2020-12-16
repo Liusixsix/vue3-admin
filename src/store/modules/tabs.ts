@@ -41,7 +41,6 @@ const menus:Module<StateType,any> = {
             state.tabsList = state.tabsList.filter(item=>item.fullPath === route.fullPath)
         },
         closeAllTabs(state) {// 关闭全部
-            if(state.tabsList.length ===0) return
             state.tabsList = []
         }
     }

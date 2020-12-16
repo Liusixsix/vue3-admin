@@ -2,7 +2,7 @@
   <a-layout class="layout">
     <a-layout-sider v-model:collapsed='collapsed' :trigger="null" collapsible class="layout-sider">
         <logo :collapsed="collapsed" />
-       <Menu />
+       <Menu :collapsed="collapsed" />
     </a-layout-sider>
     <a-layout> 
       <page-header v-model:collapsed='collapsed'></page-header>
@@ -10,7 +10,7 @@
           <tabs-view></tabs-view>
           <div class="tabs-view-content">
               <a-card>
-                <router-transition></router-transition>
+                <router-transition :not-need-key="true" ></router-transition>
               </a-card>
           </div>
         </a-layout-content>    

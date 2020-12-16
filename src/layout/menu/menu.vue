@@ -2,10 +2,10 @@
   <a-menu
     v-model:open-keys="openKeys"
     v-model:selectedKeys="selectedKeys"
-    :inline-collapsed="collapsed"
+    :inlineCollapsed="collapsed"
     mode="inline"
     theme="dark"
-     @click="clickMenuItem"
+    @click="clickMenuItem"
   >
     <template v-for="item in menus" :key="item.name">
       <menu-item :menu-info="item"/>
@@ -41,6 +41,7 @@ export default defineComponent({
        // 跟随页面路由变化，切换菜单选中状态
     watch(() => currentRoute.fullPath, () => {
       if (currentRoute.name == 'login' || props.collapsed) return
+      // state.openKeys = getOpenkeys()
       state.selectedKeys = [currentRoute.name]
     })
 
