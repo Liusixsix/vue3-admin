@@ -10,7 +10,7 @@
      <a-card>
       <div class="btn-rows">
           <a-space>
-        <a-button type="primary">primary</a-button>
+        <a-button type="primary" v-permission="{ action: 'create', effect: 'disabled' }">primary</a-button>
         <a-button type="warning">warning</a-button>
         <a-button type="success">success</a-button>
         </a-space>
